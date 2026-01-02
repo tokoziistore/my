@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZIISTORE - Panel Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-[#0b0e14] text-white">
+
+    <div class="max-w-md mx-auto min-h-screen p-6 flex flex-col justify-center">
+        <div class="bg-[#161b22] border border-gray-800 rounded-3xl p-8 shadow-2xl">
+            <h1 class="text-3xl font-black text-blue-500 text-center mb-2">ZIISTORE</h1>
+            <p class="text-gray-500 text-center text-sm mb-8">Pilih paket dan konfirmasi pembayaran</p>
+
+            <div class="space-y-6">
+                <select id="paket" class="w-full bg-[#0d1117] border border-gray-700 rounded-xl p-4 outline-none focus:border-blue-500">
+                    <option value="RAM 1GB - Rp 2.000">RAM 1GB - Rp 2.000</option>
+                    <option value="RAM 2GB - Rp 4.000">RAM 2GB - Rp 4.000</option>
+                    <option value="RAM 3GB - Rp 6.000">RAM 3GB - Rp 6.000</option>
+                </select>
+
+                <div class="bg-white p-4 rounded-2xl">
+                    <img src="https://files.catbox.moe/xxxxx.jpg" alt="QRIS" class="w-full rounded-lg">
+                    <p class="text-black text-[10px] font-bold text-center mt-2">SCAN UNTUK BAYAR</p>
+                </div>
+
+                <div class="space-y-3">
+                    <input type="text" id="username" placeholder="Username Panel" class="w-full bg-[#0d1117] border border-gray-700 rounded-xl p-4 outline-none">
+                    <input type="email" id="email" placeholder="Email Aktif" class="w-full bg-[#0d1117] border border-gray-700 rounded-xl p-4 outline-none">
+                </div>
+
+                <button onclick="orderWA()" class="w-full bg-blue-600 hover:bg-blue-700 py-4 rounded-2xl font-bold shadow-lg shadow-blue-900/20 transition-all active:scale-95">
+                    KONFIRMASI PEMBAYARAN
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function orderWA() {
+            const paket = document.getElementById('paket').value;
+            const user = document.getElementById('username').value;
+            const mail = document.getElementById('email').value;
+            const noWA = "628xxxxxxxx"; // GANTI NOMOR WA KAMU DI SINI
+
+            if(!user || !mail) return alert('Lengkapi data dahulu!');
+
+            const text = `Halo Admin Ziistore,\nSaya ingin konfirmasi pembayaran.\n\n` +
+                         `📦 Paket: ${paket}\n` +
+                         `👤 Username: ${user}\n` +
+                         `📧 Email: ${mail}\n\n` +
+                         `Saya akan kirim bukti screenshot di bawah.`;
+            
+            window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(text)}`);
+        }
+    </script>
+</body>
+</html>
